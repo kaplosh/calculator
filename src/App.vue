@@ -13,10 +13,6 @@ export default {
   methods: {
     add_Number(added_Num) {
       this.curr_Value = String(this.curr_Value) + String(added_Num);
-      /*if(this.result !== null){
-        this.first_Num = null;
-        this.second_Num = null;
-      }*/
     },
 
     save_Value() {
@@ -24,6 +20,10 @@ export default {
       this.curr_Value = "";
       console.log(this.curr_Value);
       console.log(this.first_Num);
+
+      if(this.result !== null){
+        this.first_Num = this.result;
+      }
 
 
     },
