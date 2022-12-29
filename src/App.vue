@@ -120,7 +120,7 @@ console.log("Hi");
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
       </div>
       <div>
-        {{ curr_Value }} <br> {{ result }}
+        Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
       </div>
     </div>
   </main>
