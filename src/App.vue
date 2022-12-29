@@ -13,6 +13,10 @@ export default {
   methods: {
     add_Number(added_Num) {
       this.curr_Value = String(this.curr_Value) + String(added_Num);
+      /*if(this.result !== null){
+        this.first_Num = null;
+        this.second_Num = null;
+      }*/
     },
 
     save_Value() {
@@ -53,8 +57,10 @@ export default {
         this.result = Number(this.first_Num) / Number(this.second_Num);
         this.curr_Value = this.result;
         this.curr_Value = "";
-      }
 
+      }
+      this.first_Num = null;
+      this.second_Num = null;
     },
     del_Single_Char(){
       this.curr_Value = this.curr_Value.slice(0, -1);
