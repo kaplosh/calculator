@@ -29,12 +29,6 @@ export default {
         this.first_Num = this.result;
       }
 
-      if(this.op_count > 1 && this.result_state === false){
-        this.second_Num = this.curr_Value;
-        this.make_result();
-        this.second_Num = this.result;
-        this.result = null;
-      }
 
 
     },
