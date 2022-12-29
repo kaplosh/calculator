@@ -7,7 +7,6 @@ export default {
       second_Num: null,
       operation: null,
       op_String: "",
-      op_count: 0,
       result: null,
       result_state: false,
     };
@@ -23,12 +22,12 @@ export default {
     save_Value() {
       this.first_Num = this.curr_Value;
       this.curr_Value = "";
-      this.op_count++;
+      console.log(this.curr_Value);
+      console.log(this.first_Num);
 
       if (this.result_state === true) {
         this.first_Num = this.result;
       }
-
 
 
     },
@@ -46,9 +45,7 @@ export default {
       }
     },
     make_result() {
-      if(this.op_count === 1 ) {
-        this.second_Num = this.curr_Value;
-      }
+      this.second_Num = this.curr_Value;
       if(this.operation === 1) {
         this.result = Number(this.first_Num) + Number(this.second_Num);
         this.curr_Value = "";
@@ -68,7 +65,6 @@ export default {
         this.result_state = true;
 
           },
-
     del_Single_Char(){
       this.curr_Value = this.curr_Value.slice(0, -1);
     },
@@ -79,7 +75,6 @@ export default {
       this.operation = null;
       this.result = null;
       this.op_String = "";
-      this.op_count = 0;
 
     }
 
