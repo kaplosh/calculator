@@ -8,15 +8,11 @@ export default {
       operation: null,
       op_String: "",
       result: null,
-      result_state: false,
     };
   },
   methods: {
     add_Number(added_Num) {
       this.curr_Value = String(this.curr_Value) + String(added_Num);
-      if(this.result_state === true){
-        this.result_state = false
-      }
     },
 
     save_Value() {
@@ -25,15 +21,10 @@ export default {
       console.log(this.curr_Value);
       console.log(this.first_Num);
 
-      if (this.result_state === true) {
-        this.first_Num = this.result;
-      }
-
 
     },
     set_operation(param) {
       this.operation = param;
-
       if(this.operation === 1){
         this.op_String = "+"
       } else if (this.operation === 2) {
@@ -48,6 +39,7 @@ export default {
       this.second_Num = this.curr_Value;
       if(this.operation === 1) {
         this.result = Number(this.first_Num) + Number(this.second_Num);
+
         this.curr_Value = "";
       } else if(this.operation === 2 ) {
         this.result = Number(this.first_Num) - Number(this.second_Num);
@@ -62,9 +54,8 @@ export default {
         this.curr_Value = this.result;
         this.curr_Value = "";
       }
-        this.result_state = true;
 
-          },
+    },
     del_Single_Char(){
       this.curr_Value = this.curr_Value.slice(0, -1);
     },
