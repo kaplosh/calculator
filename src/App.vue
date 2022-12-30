@@ -8,6 +8,9 @@ export default {
       operation: null,
       op_String: "",
       result: null,
+      memory: "",
+      memory_list: [],
+      memory_Count: 0,
     };
   },
   methods: {
@@ -24,8 +27,6 @@ export default {
       if(this.result !== null){
         this.first_Num = this.result;
       }
-
-
     },
     set_operation(param) {
       this.operation = param;
@@ -72,9 +73,17 @@ export default {
       this.operation = null;
       this.result = null;
       this.op_String = "";
-
+    },
+    add_M() {
+      this.memory_Count++;
+      if (this.memory_Count === 1) {
+        this.memory = this.curr_Value.toString();
+      } else if (this.memory_Count === 2) {
+        this.memory_list.push(this.memory);
+        this.memory_list.push(this.curr_Value);
+        this.memory_list = this.memory_list.toString();
+      }
     }
-
   },
 };
 console.log("Hi");
@@ -124,9 +133,17 @@ console.log("Hi");
         <button type="button" @click="del_Single_Char()" class="btn btn-outline-light">Del</button>
         <button type="button" @click="clear_all()" class="btn btn-outline-light">Clear</button>
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
+        <button type="button" @click="add_M()" class="btn btn-outline-light">M+</button>
+        <button type="button" class="btn btn-outline-light">M-Clear</button>
       </div>
       <div>
         Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
+      </div>
+      <div v-if="memory_Count <= 1">
+        Uložená hodnota v paměti je {{ memory }}
+      </div>
+      <div>
+        Uložené hodnoty v paměti jsou {{ memory_list }}
       </div>
     </div>
   </main>
