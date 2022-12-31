@@ -8,8 +8,8 @@ export default {
       operation: null,
       op_String: "",
       result: null,
-      memory: "",
-      memory_list: [],
+      memory: null,
+      memory_List: [],
       memory_Count: 0,
     };
   },
@@ -76,14 +76,17 @@ export default {
     },
     add_M() {
       this.memory_Count++;
-      if (this.memory_Count === 1) {
-        this.memory = this.curr_Value.toString();
-      } else if (this.memory_Count === 2) {
-        this.memory_list.push(this.memory);
-        this.memory_list.push(this.curr_Value);
-        this.memory_list = this.memory_list.toString();
-      }
-    }
+      this.memory_List.push(Number(this.curr_Value));
+    },
+    clear_M(){
+      this.memory_List = [];
+      this.memory_Count = 0;
+    },
+    sort_M(){
+      this.memory_List.sort(function(x,y){
+        return y - x;
+      });
+    },
   },
 };
 console.log("Hi");
@@ -134,16 +137,17 @@ console.log("Hi");
         <button type="button" @click="clear_all()" class="btn btn-outline-light">Clear</button>
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
         <button type="button" @click="add_M()" class="btn btn-outline-light">M+</button>
-        <button type="button" class="btn btn-outline-light">M-Clear</button>
+        <button type="button" @click="clear_M()" class="btn btn-outline-light">M-Clear</button>
+        <button type="button" @click="sort_M()" class="btn btn-outline-light">M-Sort</button>
       </div>
       <div>
         Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
       </div>
       <div v-if="memory_Count <= 1">
-        Uložená hodnota v paměti je {{ memory }}
+        Uložená hodnota v paměti je {{ memory_List }}
       </div>
-      <div>
-        Uložené hodnoty v paměti jsou {{ memory_list }}
+      <div v-else="memory_Count >= 2">
+        Uložené hodnoty v paměti jsou {{ memory_List }}
       </div>
     </div>
   </main>
