@@ -2,7 +2,8 @@
 export default {
   name: "Memory",
   props:[
-    'curr_Value'
+    'curr_Value',
+    'mem_Push'
   ],
 
   data() {
@@ -27,11 +28,13 @@ export default {
       });
     },
     push_M() {
-      console.log(this.memory_List[this.memory_List.length - 1]);
+      //console.log(this.memory_List[this.memory_List.length - 1]);
       if (this.memory_Count >= 1) {
         this.memory_Count--;
-        this.$props.curr_Value = this.memory_List[this.memory_List.length - 1];
+        let x = this.memory_List[this.memory_List.length - 1];
+        console.log("constis", x);
         this.memory_List = this.memory_List.slice(0, -1);
+        this.$emit("push", x );
       }
 
     },

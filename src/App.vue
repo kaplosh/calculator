@@ -18,6 +18,7 @@ export default {
       memory: null,
       memory_List: [],
       memory_Count: 0,
+      mem_Push: "",
     };
   },
   methods: {
@@ -102,6 +103,9 @@ export default {
         this.memory_List = this.memory_List.slice(0, -1);
       }
     },
+    onPush(x){
+      this.curr_Value = x;
+    }
   },
 };
 console.log("Hi");
@@ -153,7 +157,7 @@ console.log("Hi");
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
       </div>
       <div>
-        <Memory :curr_Value="curr_Value" />
+        <Memory :curr_Value="curr_Value" :x="x" @push="onPush" />
       </div>
       <div>
         Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
