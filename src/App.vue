@@ -87,6 +87,14 @@ export default {
         return y - x;
       });
     },
+    push_M(){
+      console.log(this.memory_List[this.memory_List.length -1]);
+      if(this.memory_Count >= 1) {
+        this.memory_Count--;
+        this.curr_Value = this.memory_List[this.memory_List.length -1];
+        this.memory_List = this.memory_List.slice(0, -1);
+      }
+    },
   },
 };
 console.log("Hi");
@@ -137,8 +145,10 @@ console.log("Hi");
         <button type="button" @click="clear_all()" class="btn btn-outline-light">Clear</button>
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
         <button type="button" @click="add_M()" class="btn btn-outline-light">M+</button>
+        <button type="button" @click="push_M()" class="btn btn-outline-light">M-Push</button>
         <button type="button" @click="clear_M()" class="btn btn-outline-light">M-Clear</button>
         <button type="button" @click="sort_M()" class="btn btn-outline-light">M-Sort</button>
+
       </div>
       <div>
         Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
