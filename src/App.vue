@@ -1,5 +1,12 @@
 <script>
+
+import Memory from "./components/Memory.vue";
 export default {
+
+  components:{
+    Memory
+  },
+
   data() {
     return {
       curr_Value: "",
@@ -144,20 +151,12 @@ console.log("Hi");
         <button type="button" @click="del_Single_Char()" class="btn btn-outline-light">Del</button>
         <button type="button" @click="clear_all()" class="btn btn-outline-light">Clear</button>
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
-        <button type="button" @click="add_M()" class="btn btn-outline-light">M+</button>
-        <button type="button" @click="push_M()" class="btn btn-outline-light">M-Push</button>
-        <button type="button" @click="clear_M()" class="btn btn-outline-light">M-Clear</button>
-        <button type="button" @click="sort_M()" class="btn btn-outline-light">M-Sort</button>
-
+      </div>
+      <div>
+        <Memory :curr_Value="curr_Value" />
       </div>
       <div>
         Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
-      </div>
-      <div v-if="memory_Count <= 1">
-        Uložená hodnota v paměti je {{ memory_List }}
-      </div>
-      <div v-else="memory_Count >= 2">
-        Uložené hodnoty v paměti jsou {{ memory_List }}
       </div>
     </div>
   </main>
