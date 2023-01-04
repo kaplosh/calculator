@@ -9,102 +9,101 @@ export default {
 
   data() {
     return {
-      curr_Value: "",
-      first_Num: null,
-      second_Num: null,
+      currentValue: "",
+      firstNumber: null,
+      secondNumber: null,
       operation: null,
-      op_String: "",
+      opString: "",
       result: null,
       memory: null,
-      memory_List: [],
-      memory_Count: 0,
-      mem_Push: "",
+      memoryList: [],
+      memoryCount: 0,
     };
   },
   methods: {
     add_Number(added_Num) {
-      this.curr_Value = String(this.curr_Value) + String(added_Num);
+      this.currentValue = String(this.currentValue) + String(added_Num);
     },
 
     save_Value() {
-      this.first_Num = this.curr_Value;
-      this.curr_Value = "";
-      console.log(this.curr_Value);
-      console.log(this.first_Num);
+      this.firstNumber = this.currentValue;
+      this.currentValue = "";
+      console.log(this.currentValue);
+      console.log(this.firstNumber);
 
       if(this.result !== null){
-        this.first_Num = this.result;
+        this.firstNumber = this.result;
       }
     },
     set_operation(param) {
       this.operation = param;
       if(this.operation === 1){
-        this.op_String = "+"
+        this.opString = "+"
       } else if (this.operation === 2) {
-        this.op_String = "-"
+        this.opString = "-"
       } else if (this.operation === 3){
-        this.op_String = "*"
+        this.opString = "*"
       } else if (this.operation === 4) {
-        this.op_String = "/"
+        this.opString = "/"
       }
     },
     make_result() {
-      this.second_Num = this.curr_Value;
+      this.secondNumber = this.currentValue;
       if(this.operation === 1) {
-        this.result = Number(this.first_Num) + Number(this.second_Num);
+        this.result = Number(this.firstNumber) + Number(this.secondNumber);
 
-        this.curr_Value = "";
+        this.currentValue = "";
       } else if(this.operation === 2 ) {
-        this.result = Number(this.first_Num) - Number(this.second_Num);
-        this.curr_Value = this.result;
-        this.curr_Value = "";
+        this.result = Number(this.firstNumber) - Number(this.secondNumber);
+        this.currentValue = this.result;
+        this.currentValue = "";
       } else if (this.operation === 3 ) {
-        this.result = Number(this.first_Num) * Number(this.second_Num);
-        this.curr_Value = this.result;
-        this.curr_Value = "";
+        this.result = Number(this.firstNumber) * Number(this.secondNumber);
+        this.currentValue = this.result;
+        this.currentValue = "";
       } else if (this.operation === 4) {
-        this.result = Number(this.first_Num) / Number(this.second_Num);
-        this.curr_Value = this.result;
-        this.curr_Value = "";
+        this.result = Number(this.firstNumber) / Number(this.secondNumber);
+        this.currentValue = this.result;
+        this.currentValue = "";
 
       }
-      this.first_Num = null;
-      this.second_Num = null;
+      this.firstNumber = null;
+      this.secondNumber = null;
     },
     del_Single_Char(){
-      this.curr_Value = this.curr_Value.slice(0, -1);
+      this.currentValue = this.currentValue.slice(0, -1);
     },
     clear_all(){
-      this.curr_Value = "";
-      this.first_Num = null;
-      this.second_Num = null;
+      this.currentValue = "";
+      this.firstNumber = null;
+      this.secondNumber = null;
       this.operation = null;
       this.result = null;
-      this.op_String = "";
+      this.opString = "";
     },
     add_M() {
-      this.memory_Count++;
-      this.memory_List.push(Number(this.curr_Value));
+      this.memoryCount++;
+      this.memoryList.push(Number(this.currentValue));
     },
     clear_M(){
-      this.memory_List = [];
-      this.memory_Count = 0;
+      this.memoryList = [];
+      this.memoryCount = 0;
     },
     sort_M(){
-      this.memory_List.sort(function(x,y){
+      this.memoryList.sort(function(x,y){
         return y - x;
       });
     },
     push_M(){
-      console.log(this.memory_List[this.memory_List.length -1]);
-      if(this.memory_Count >= 1) {
-        this.memory_Count--;
-        this.curr_Value = this.memory_List[this.memory_List.length -1];
-        this.memory_List = this.memory_List.slice(0, -1);
+      console.log(this.memoryList[this.memoryList.length -1]);
+      if(this.memoryCount >= 1) {
+        this.memoryCount--;
+        this.currentValue = this.memoryList[this.memoryList.length -1];
+        this.memoryList = this.memoryList.slice(0, -1);
       }
     },
-    onPush(x){
-      this.curr_Value = x;
+    onPush(pushedValue){
+      this.currentValue = pushedValue;
     }
   },
 };
@@ -157,10 +156,10 @@ console.log("Hi");
         <button type="button" @click="make_result()" class="btn btn-outline-light">=</button>
       </div>
       <div>
-        <Memory :curr_Value="curr_Value" :x="x" @push="onPush" />
+        <Memory :currentValue="currentValue" :pushedValue="pushedValue" @push="onPush" />
       </div>
       <div>
-        Aktuální naklikaná hodnota je {{ curr_Value }} <br> Výsledek je {{ result }}
+        Aktuální naklikaná hodnota je {{ currentValue }} <br> Výsledek je {{ result }}
       </div>
     </div>
   </main>
